@@ -1,0 +1,95 @@
+format = """
+$username\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$lua\
+$nodejs\
+$golang\
+$rust\
+$docker_context\
+$jobs\
+$cmd_duration\
+$line_break\
+$character"""
+
+add_newline = false
+palette = 'onedark'
+
+[directory]
+style = ' fg:dark_blue'
+format = '([on](white) [$path ]($style))'
+truncation_length = 1
+# truncation_symbol = '…/'
+truncate_to_repo = false
+
+
+[git_branch]
+# style = 'fg:green'
+symbol = ' '
+format = '[ ](orange) [$symbol$branch ](italic purple)'
+#
+[git_status]
+# style = 'fg:green'
+format = '([$all_status$ahead_behind](red) )'
+
+[fill]
+symbol = ' '
+
+[character]
+success_symbol=' [󰘍](bold aqua)'
+error_symbol=' [󰘍](bold red)'
+vimcmd_symbol='[ ](bold green)'
+
+# [python]
+# style = 'yellow'
+# symbol = ' '
+# format = '[${symbol}(${version} )(\($virtualenv\) )]($style)'
+# pyenv_version_name = true
+# pyenv_prefix = ''
+
+# [lua]
+# symbol = ' '
+#
+# [nodejs]
+# symbol = ' '
+#
+[golang]
+symbol = ' '
+#
+#
+# [rust]
+# symbol = ' '
+
+[package]
+disabled = true
+
+[docker_context]
+symbol = ' '
+style = 'fg:#06969A'
+format = '[$symbol]($style) $path'
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
+detect_extensions = ['Dockerfile']
+
+[username]
+style_user = 'aqua '
+style_root = 'black '
+format = '[$user]($style) '
+disabled = false
+show_always = true
+aliases = { "corpuser034g" = "matchai" }
+
+[palettes.onedark]
+dark_blue='#61afef'
+blue='#56b6c2'
+red='#e06c75'
+green='#66b266'
+purple='#c678dd'
+cyan='#56b6c2'
+orange='#ffb732'
+yellow='#e5c07b'
+gray='#828997'
+white ='#abb2bf'
+black='#2c323c'
+aqua = '#00ffdf'
