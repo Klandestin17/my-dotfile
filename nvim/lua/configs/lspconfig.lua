@@ -1,10 +1,10 @@
 -- load defaults i.e lua_lsp
-require("nvchad.configs.lspconfig").defaults()
+-- require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
-local servers = { "rust_analyzer","ruff_lsp" }
+local servers = { "html", "cssls", "rust_analyzer", "pyright", "lua_ls", "clangd", "gopls" }
 -- EXAMPLE
-local servers = { "html", "cssls" }
+-- local servers = { "html", "cssls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -16,26 +16,25 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-lspconfig.pylsp.setup({
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          maxLineLength = 180
-        }
-      }
-    }
-  }
-})
+-- lspconfig.pylsp.setup {
+--   on_attach = nvlsp.on_attach,
+--   on_init = nvlsp.on_init,
+--   capabilities = nvlsp.capabilities,
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         pycodestyle = {
+--           maxLineLength = 180,
+--         },
+--       },
+--     },
+--   },
+-- }
 
-
-lspconfig.rust_analyzer.setup({
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+lspconfig.rust_analyzer.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
   settings = {
     ["rust-analyzer"] = {
       inlayHints = {
@@ -70,13 +69,49 @@ lspconfig.rust_analyzer.setup({
           hideNamedConstructor = false,
         },
       },
-    }
-  }
-})
+    },
+  },
+}
 
--- configuring single server, example: typescript
--- lspconfig.ts_ls.setup {
+lspconfig.lua_ls.setup {
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
+  on_init = nvlsp.on_init,
+
+  settings = {
+    Lua = {
+      hint = {
+        enable = true,
+        arrayIndex = "Disable",
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          vim.fn.expand "$VIMRUNTIME/lua",
+          vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
+          vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
+          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+          "${3rd}/luv/library",
+        },
+      },
+    },
+  },
+}
+-- lspconfig.clangd.setup {
 --   on_attach = nvlsp.on_attach,
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
+--   settings = {
+--     clangd = {
+--       InlayHints = {
+--         Designators = true,
+--         Enabled = true,
+--         ParameterNames = true,
+--         DeducedTypes = true,
+--       },
+--       -- fallbackFlags = { "-std=c++20" },
+--     },
+--   },
 -- }

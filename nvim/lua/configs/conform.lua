@@ -1,10 +1,15 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    py = {"black"},
-    python = {"black"},
+    py = { "black" },
+    python = { "black" },
+    go = { "gofumpt" },
+    golang = { "gofumpt" },
+    yaml = { "yamlfmt" },
     -- css = { "prettier" },
     -- html = { "prettier" },
+    -- javascript = { "prettier" },
+    -- typescript = { "prettier" },
   },
 
   format_on_save = {
