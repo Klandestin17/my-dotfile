@@ -3,13 +3,13 @@ local options = {
     lua = { "stylua" },
     py = { "black" },
     python = { "black" },
-    go = { "gofumpt" },
     golang = { "gofumpt" },
     yaml = { "yamlfmt" },
-    -- css = { "prettier" },
-    -- html = { "prettier" },
-    -- javascript = { "prettier" },
-    -- typescript = { "prettier" },
+    css = { "prettier" },
+    html = { "prettier" },
+    javascript = { "prettier" },
+    typescript = { "prettier" },
+    vue = { "prettier" },
   },
 
   format_on_save = {

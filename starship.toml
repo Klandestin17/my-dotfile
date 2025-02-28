@@ -9,8 +9,6 @@ $nodejs\
 $golang\
 $rust\
 $docker_context\
-$jobs\
-$cmd_duration\
 $line_break\
 $character"""
 
@@ -19,16 +17,17 @@ palette = 'onedark'
 
 [directory]
 style = ' fg:dark_blue'
-format = '([on](white) [$path ]($style))'
+format = '( [$path ]($style))'
 truncation_length = 1
-# truncation_symbol = '…/'
+# truncation_symbol = '󰒒 '
+truncation_symbol = ' '
 truncate_to_repo = false
 
 
 [git_branch]
 # style = 'fg:green'
-symbol = ' '
-format = '[ ](orange) [$symbol$branch ](italic purple)'
+symbol = ' '
+format = '[ ](gray) [$symbol$branch ](purple)'
 #
 [git_status]
 # style = 'fg:green'
@@ -37,11 +36,15 @@ format = '([$all_status$ahead_behind](red) )'
 [fill]
 symbol = ' '
 
-[character]
-success_symbol=' [󰘍](bold aqua)'
-error_symbol=' [󰘍](bold red)'
-vimcmd_symbol='[ ](bold green)'
+# [character]
+# success_symbol=' [󰘍](bold aqua)'
+# error_symbol=' [󰘍](bold red)'
+# vimcmd_symbol='[ ](bold green)'
 
+[character]
+success_symbol=' [󱞩](bold aqua)'
+error_symbol=' [󱞩](bold red)'
+vimcmd_symbol='[ ](bold green)'
 # [python]
 # style = 'yellow'
 # symbol = ' '
@@ -49,14 +52,14 @@ vimcmd_symbol='[ ](bold green)'
 # pyenv_version_name = true
 # pyenv_prefix = ''
 
-# [lua]
-# symbol = ' '
-#
-# [nodejs]
-# symbol = ' '
-#
+[lua]
+symbol = ' '
+
+[nodejs]
+symbol = ' '
+
 [golang]
-symbol = ' '
+symbol = '󰟓 '
 #
 #
 # [rust]
@@ -75,7 +78,7 @@ detect_extensions = ['Dockerfile']
 [username]
 style_user = 'aqua '
 style_root = 'black '
-format = '[$user]($style) '
+format = '[$user]($style) [on](white) [Nitro-5](yellow)'
 disabled = false
 show_always = true
 aliases = { "corpuser034g" = "matchai" }

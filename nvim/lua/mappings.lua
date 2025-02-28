@@ -14,6 +14,14 @@ for _, mode in ipairs { "i", "v", "n", "x" } do
   end, { desc = "Delete all Notifications" })
 end
 
+-- move text up and down
+map("x", "<A-Down>", ":move '>+1<CR>gv-gv", opts)
+map("x", "<A-Up>", ":move '<-2<CR>gv-gv", opts)
+map("n", "<M-Down>", "<cmd>m+<cr>", opts)
+map("i", "<M-Down>", "<cmd>m+<cr>", opts)
+map("n", "<M-Up>", "<cmd>m-2<cr>", opts)
+map("i", "<M-Up>", "<cmd>m-2<cr>", opts)
+
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 

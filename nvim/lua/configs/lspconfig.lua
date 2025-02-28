@@ -2,7 +2,7 @@
 -- require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "rust_analyzer", "pyright", "lua_ls", "clangd", "gopls" }
+local servers = { "html", "rust_analyzer", "pyright", "clangd", "gopls", "ts_ls" }
 -- EXAMPLE
 -- local servers = { "html", "cssls" }
 local nvlsp = require "nvchad.configs.lspconfig"
@@ -115,3 +115,35 @@ lspconfig.lua_ls.setup {
 --     },
 --   },
 -- }
+--
+
+local mason_registry = require "mason-registry"
+local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+  .. "/node_modules/@vue/language-server"
+
+lspconfig.ts_ls.setup {
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
+  on_init = nvlsp.on_init,
+
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = vue_language_server_path,
+        languages = { "vue" },
+      },
+    },
+  },
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+}
+
+lspconfig.tailwindcss.setup {
+
+  { "css", "scss", "postcss", "javascriptreact", "typescriptreact", "vue" },
+}
+
+lspconfig.emmet_ls.setup {
+
+  { "javascriptreact", "typescriptreact", "vue" },
+}
